@@ -76,5 +76,10 @@ public class Player : MonoBehaviour
 
         transform.localPosition = new Vector3(xPosition, yPosition, transform.localPosition.z);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("Triggered something");
+    }
 }
 
