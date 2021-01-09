@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Tooltip("Particle prefab on Enenmy Ship")]
     [SerializeField] GameObject m_DeathFX;
-
-    float m_DestroyDelay = .5f;
-
 
     private void Start()
     {
@@ -24,13 +20,7 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        m_DeathFX.SetActive(true);
-        Invoke("DestroyShip", m_DestroyDelay);
-    }
-
-    void DestroyShip()
-    {
+        Instantiate(m_DeathFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-
 }
