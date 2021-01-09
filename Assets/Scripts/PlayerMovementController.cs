@@ -4,37 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
-    [Tooltip("In Meters/sec")]
-    [SerializeField]
-    float m_Xspeed = 10f;
+    [Header("General")]
+    [Tooltip("In Meters/sec")] [SerializeField] float m_Xspeed = 10f;
+    [Tooltip("In Meters")] [SerializeField] float m_Xrange = 3f;
+    [Tooltip("In Meters/sec")] [SerializeField] float m_Yspeed = 10f;
+    [Tooltip("In Meters")] [SerializeField] float m_Yrange = 3f;
 
-    [Tooltip("In Meters")]
-    [SerializeField]
-    float m_Xrange = 3f;
+    [Header("Screen-position")]
+    [SerializeField] float m_PsoitionPitchFactor = -10f;
+    [SerializeField] float m_PsoitionYawFactor = 10f;
 
-    [Tooltip("In Meters/sec")]
-    [SerializeField]
-    float m_Yspeed = 10f;
-
-    [Tooltip("In Meters")]
-    [SerializeField]
-    float m_Yrange = 3f;
-
-    [SerializeField]
-    float m_PsoitionPitchFactor = -10f;
-    [SerializeField]
-    float m_ControlPitchFactor = -15f;
-
-    [SerializeField]
-    float m_PsoitionYawFactor = 10f;
-
-    [SerializeField]
-    float m_ControlRollFactor = -30f;
+    [Header("Control-throw")]
+    [SerializeField] float m_ControlPitchFactor = -15f;
+    [SerializeField] float m_ControlRollFactor = -30f;
 
     float m_Xthrow;
     float m_Ythrow;
+
+    bool m_IsAlive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +34,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProcessTranslation();
-        ProcessRotation();
+        if (m_IsAlive)
+        {
+            ProcessTranslation();
+            ProcessRotation();
+        }
     }
 
     private void ProcessRotation()
@@ -77,9 +69,9 @@ public class Player : MonoBehaviour
         transform.localPosition = new Vector3(xPosition, yPosition, transform.localPosition.z);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnPlayerDeath() //called via string reference
     {
-        print("Triggered something");
+        m_IsAlive = false;
     }
 }
 
