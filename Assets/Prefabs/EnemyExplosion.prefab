@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9058005955417816402}
   - component: {fileID: 9058005955417816429}
   - component: {fileID: 9058005955417816428}
+  - component: {fileID: 4982135468246535024}
   m_Layer: 0
   m_Name: EnemyExplosion
   m_TagString: Untagged
@@ -4851,3 +4852,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4982135468246535024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058005955417816431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81284cd8da45ca4e9f198ff39f3f19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

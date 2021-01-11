@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] GameObject m_DeathFX;
+    [SerializeField] Transform m_Parent;
 
     private void Start()
     {
@@ -20,7 +21,8 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        Instantiate(m_DeathFX, transform.position, Quaternion.identity);
+        GameObject fx = Instantiate(m_DeathFX, transform.position, Quaternion.identity);
+        fx.transform.parent = m_Parent;
         Destroy(gameObject);
     }
 }
