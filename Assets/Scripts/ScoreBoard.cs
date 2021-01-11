@@ -16,11 +16,6 @@ public class ScoreBoard : MonoBehaviour
         m_ScoreText.text = m_Score.ToString();
     }
 
-    private void FixedUpdate()
-    {
-        ScoreHit(1);
-    }
-
     public void ScoreHit(int points)
     {
         m_Score += points;

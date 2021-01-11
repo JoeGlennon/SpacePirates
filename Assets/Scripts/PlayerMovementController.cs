@@ -11,6 +11,7 @@ public class PlayerMovementController : MonoBehaviour
     [Tooltip("In Meters")] [SerializeField] float m_Xrange = 3f;
     [Tooltip("In Meters/sec")] [SerializeField] float m_Yspeed = 10f;
     [Tooltip("In Meters")] [SerializeField] float m_Yrange = 3f;
+    [SerializeField] GameObject[] m_Guns;
 
     [Header("Screen-position")]
     [SerializeField] float m_PsoitionPitchFactor = -10f;
@@ -24,13 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     float m_Ythrow;
 
     bool m_IsAlive = true;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +33,34 @@ public class PlayerMovementController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            ProcessShooting();
+        }
+    }
+
+    private void ProcessShooting()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire"))
+        {
+            ActiveGuns();
+        }
+        else
+        {
+            DisableGuns();
+        }
+    }
+
+    private void ActiveGuns()
+    {
+        foreach (GameObject gun in m_Guns)
+        {
+            gun.SetActive(true);
+        }
+    }
+    private void DisableGuns()
+    {
+        foreach (GameObject gun in m_Guns)
+        {
+            gun.SetActive(false);
         }
     }
 
